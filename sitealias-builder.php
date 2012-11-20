@@ -11,14 +11,14 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
 
         $aliases[$env_key . '.'. $server] = array(
           'root' => '/var/www/drupal/' . $env_key . '/' . $deploy_sitename . '/current',
-          'remote-user' => $server['user'],
+          'remote-user' => $environment['user'],
 	        'deploy-env-tag' => $env_key,
           'remote-host' => $server,
           'command-specific' => array(
             'deploy' => array(
                'application' => $deploy_sitename . $env_key,
                'deploy-repository' => $deploy_repository,
-               'branch' => $server['branch'],
+               'branch' => $environment['branch'],
                'keep-releases' => 3,
     	         'deploy-via' => 'RemoteCache',
                'deploy-to' => '/var/www/drupal/' . $env_key . '/' . $deploy_sitename,
