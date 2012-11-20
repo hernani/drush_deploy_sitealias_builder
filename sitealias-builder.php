@@ -20,7 +20,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
                'deploy-repository' => $deploy_repository,
                'branch' => $environment['branch'],
                'keep-releases' => 3,
-    	         'deploy-via' => 'RemoteCache',
+    	         'deploy-via' => 'Checkout',
                'deploy-to' => $environment['deploy-to'] . '/' . $deploy_sitename,
                'keep-releases' => $server_env['branch'],
              )
