@@ -6,6 +6,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
       return array();
 
     foreach ($deploy_environments as $env_key => $environment) {
+
       foreach ($environment['servers'] as $server) {
 
         $aliases[$env_key . '.'. $server] = array(
@@ -21,6 +22,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
                'keep-releases' => 3,
     	         'deploy-via' => 'RemoteCache',
                'deploy-to' => '/var/www/drupal/' . $env_key . '/' . $deploy_sitename,
+               'keep-releases' => $server_env['branch'],
              )
           )
        );

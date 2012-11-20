@@ -30,4 +30,4 @@ You should receive the site aliases defined for your site in the different envir
 @torino.prod.web2
 
 To test deploying a site to a defined environment you can use drush deploy. Use the verbose flag to understand the actions from drush deploy.
-$ drush deploy @torino.prod
+$ drush deploy @torino.prod -vvv
