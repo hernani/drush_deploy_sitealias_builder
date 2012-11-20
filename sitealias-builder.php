@@ -21,7 +21,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
                'branch' => $environment['branch'],
                'keep-releases' => 3,
     	         'deploy-via' => 'RemoteCache',
-               'deploy-to' => '/var/www/drupal/' . $env_key . '/' . $deploy_sitename,
+               'deploy-to' => $environment['deploy-to'] . '/' . $deploy_sitename,
                'keep-releases' => $server_env['branch'],
              )
           )
