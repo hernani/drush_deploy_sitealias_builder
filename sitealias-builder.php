@@ -1,6 +1,6 @@
 <?php
 
-function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_environments, $deploy_multisites) {
+function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_environments, $deploy_options) {
 
     if (empty($deploy_environments))
       return array();
