@@ -7,6 +7,7 @@
  */
 
 function my_custom_task($d) {
-    $d->run("ln -s /shared/preprod2/unisi %s/sites/default/files", $d->latest_release());
+    $env = $d->sites[0]['deploy-env-tag'];
+    $d->run("ln -s /shared/" . $env . "/unisi %s/docroot/sites/default/files", $d->latest_release());
 //  $d->run("ln -s /shared/preprod2/unisi %s/sites/default/files", $d->latest_release());
 }
