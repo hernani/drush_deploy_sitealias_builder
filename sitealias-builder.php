@@ -9,7 +9,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
     foreach ($deploy_environments as $env_key => $environment) {
       foreach ($environment['servers'] as $server) {
 
-        $aliases[$env_key . '.'. $server] = array(
+        $aliases[$env_key . '.' . $server] = array(
           'root' => '/var/www/drupal/' . $env_key . '/' . $deploy_sitename . '/current',
           'remote-user' => $environment['user'],
 	        'deploy-env-tag' => $env_key,
@@ -22,14 +22,13 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
                'keep-releases' => 3,
     	         'deploy-via' => 'Checkout',
                'deploy-to' => $environment['deploy-to'] . '/' . $deploy_sitename,
-               'keep-releases' => $server_env['branch'],
              )
           )
        );
 
         // support for after-deploy operations
         if (isset($deploy_options['after'])) {
-          $aliases[$env_key . '.'. $server]['command-specific']['deploy']['after'] = $deploy_options['after'];
+          $aliases[$env_key . '.' . $server]['command-specific']['deploy']['after'] = $deploy_options['after'];
         }
 
         $aliases[$env_key]['site-list'][] = '@'. $deploy_sitename. "." . $env_key . "." . $server;
