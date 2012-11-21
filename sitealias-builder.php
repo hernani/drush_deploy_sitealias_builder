@@ -5,8 +5,8 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
     if (empty($deploy_environments))
       return array();
 
+    // build aliases for all environments
     foreach ($deploy_environments as $env_key => $environment) {
-
       foreach ($environment['servers'] as $server) {
 
         $aliases[$env_key . '.'. $server] = array(
@@ -27,6 +27,11 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
           )
        );
 
+        // support for after-deploy operations
+        if (isset($deploy_options['after'])) {
+          $aliases[$env_key . '.'. $server]['command-specific']['deploy']['after'] = $deploy_options['after'];
+        }
+
         $aliases[$env_key]['site-list'][] = '@'. $deploy_sitename. "." . $env_key . "." . $server;
 
       }
@@ -34,8 +39,8 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
 
 
     /* support to multisites */
-    if (!empty($deploy_multisites)) {
-      foreach ($deploy_multisites as $multisite) {
+    if (!empty($deploy_options['multisites'])) {
+      foreach ($deploy_options['multisites'] as $multisite) {
         foreach ($aliases as $alias_env => $alias) {
           if (!empty($alias['deploy-env-tag'])) {
             $alias['uri'] = $multisite;
