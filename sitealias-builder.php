@@ -10,7 +10,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
       foreach ($environment['servers'] as $server) {
 
         $aliases[$env_key . '.' . $server] = array(
-          'root' => $environment['deploy-to'] . '/' . $deploy_sitename . '/current',
+          'root' => str_replace('%deploy_sitename', $deploy_sitename, $environment['root']),
           'remote-user' => $environment['user'],
 	        'deploy-env-tag' => $env_key,
           'remote-host' => $server,
