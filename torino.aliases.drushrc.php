@@ -7,8 +7,12 @@
   $deploy_options = array();
   $deploy_sitename = "torino";
   $deploy_repository = "git@github.com:hernani/deploytest.git";
-  $deploy_options['multisites'] = array('biblioteca', 'alumni');
-  $deploy_options['after']['deploy-symlink'][] = 'my_custom_task';
+
+  /* support for multisites */
+  // $deploy_options['multisites'] = array('biblioteca', 'alumni');
+
+  /* support for deploying extra tasks in end of deployment. e.g: soft link files directory */
+  // $deploy_options['after']['deploy-symlink'][] = 'my_custom_task';
 
   $aliases = deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_environments, $deploy_options);
 
