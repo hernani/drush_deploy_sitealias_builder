@@ -4,6 +4,7 @@
   require_once "/etc/drush/sitealias-builder.php";
   require_once "/etc/drush/sitealias-builder-extra-functions.php";
 
+  $deploy_options = array();
   $deploy_sitename = "torino";
   $deploy_repository = "git@github.com:hernani/deploytest.git";
   $deploy_options['multisites'] = array('biblioteca', 'alumni');
