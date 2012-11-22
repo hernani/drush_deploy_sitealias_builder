@@ -10,7 +10,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
       foreach ($environment['servers'] as $server) {
 
         $aliases[$env_key . '.' . $server] = array(
-          'root' => '/var/www/drupal/' . $env_key . '/' . $deploy_sitename . '/current',
+          'root' => $environment['deploy-to'] . '/' . $env_key . '/' . $deploy_sitename . '/current',
           'remote-user' => $environment['user'],
 	        'deploy-env-tag' => $env_key,
           'remote-host' => $server,
