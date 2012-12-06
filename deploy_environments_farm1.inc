@@ -11,7 +11,7 @@
   $deploy_environments['dev'] = array(
     'servers' => array('web1'),
     'branch' => 'master',
-    'user' => 'vagrant'
+    'user' => 'vagrant',
     'deploy-to' => '/var/www/drupal',
     'root' => '/var/www/drupal/%deploy_sitename/current/docroot',
   );
