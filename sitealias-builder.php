@@ -12,7 +12,8 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
         $aliases[$env_key . '.' . $server] = array(
           'root' => str_replace('%deploy_sitename', $deploy_sitename, $environment['root']),
           'remote-user' => $environment['user'],
-	        'deploy-env-tag' => $env_key,
+          'deploy-env-tag' => $env_key,
+          'deploy-options' => $deploy_options,
           'remote-host' => $server,
           'command-specific' => array(
             'deploy' => array(
@@ -20,7 +21,7 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
                'deploy-repository' => $deploy_repository,
                'branch' => $environment['branch'],
                'keep-releases' => 3,
-    	         'deploy-via' => 'Checkout',
+                 'deploy-via' => 'Checkout',
                'deploy-to' => $environment['deploy-to'] . '/' . $deploy_sitename,
              )
           )
@@ -35,7 +36,6 @@ function deploy_create_aliases ($deploy_sitename, $deploy_repository, $deploy_en
 
       }
     }
-
 
     /* support to multisites */
     if (!empty($deploy_options['multisites'])) {
