@@ -1,7 +1,9 @@
 <?php
   /**
-   * This file lists the different site aliases defined and expose them to
-   * Jenkins
+   * This file lists the different site aliases defined and can expose them to
+   * Jenkins via a url.
+   * In Jenkins the following plugin can be used to use the output of this script as
+   * a parameter: https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin
    */
 
   /**
@@ -42,8 +44,17 @@
         foreach ($aliases as $key => $value) {
           $key_parts = explode(".", $key);
 
-          // not a valid alias
-          if (isset($key_parts[1]) && $key_parts[1] == $value['remote-host']) {
+          // we can't sync main sites without a valid node (web1 for instance)
+          if (!isset($key_parts[1])) {
+            continue;
+          }
+
+          // haven't passed by this site
+          if (isset($key_parts[1]) && $key_parts[1] == $value['remote-host']
+              && !isset($alias_already_set[$site_name . '.' . $key_parts[0]])) {
+            $alias_already_set[$site_name . '.'. $key_parts[0]] = $key;
+          }
+          else if ($key_parts[1] == $value['remote-host']) {
             continue;
           }
 
@@ -59,7 +70,8 @@
   $installed_sites = _loadAliasesFiles('/etc/drush');
 
   // with multisites and all environments
-  if (isset($_GET['mode']) && $_GET['mode'] == 'full') {
+  if (1==1) {
+  // if (isset($_GET['mode']) && $_GET['mode'] == 'full') {
     foreach ($installed_sites as $project => $sites) {
       foreach ($sites as $key => $value) {
         $installed_sites_with_multisites[$project . '.' . $key] = $value;
