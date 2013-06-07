@@ -70,8 +70,7 @@
   $installed_sites = _loadAliasesFiles('/etc/drush');
 
   // with multisites and all environments
-  if (1==1) {
-  // if (isset($_GET['mode']) && $_GET['mode'] == 'full') {
+  if (isset($_GET['mode']) && $_GET['mode'] == 'full') {
     foreach ($installed_sites as $project => $sites) {
       foreach ($sites as $key => $value) {
         $installed_sites_with_multisites[$project . '.' . $key] = $value;
